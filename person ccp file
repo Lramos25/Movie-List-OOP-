@@ -1,0 +1,75 @@
+#include <iostream>
+#include <fstream>
+#include <ostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+#include "Stars.h"
+
+
+using namespace std;
+
+Stars::Stars() {
+	year = "";
+	actor_award = "";
+	actor_winner = "";
+	actor_name = "";
+	actor_film = "";
+}
+
+Stars::Stars(string newYear, string newActor_award, string newActor_winner, string newActor_name, string newActor_film) {
+	year = newYear;
+	actor_award = newActor_award;
+	actor_winner = newActor_winner;
+	actor_name = newActor_name;
+	actor_film = newActor_film;
+}
+
+Stars::~Stars() {
+
+}
+
+
+string Stars::getYear() const {
+	return year;
+}
+
+string Stars::getActor_award() const {
+	return actor_award;
+}
+
+
+string Stars::getActor_winner() const {
+	return actor_winner;
+}
+
+
+string Stars::getActor_name() const {
+	return actor_name;
+}
+
+string Stars::getActor_film() const {
+	return actor_film;
+}
+
+//*** Set functions are for use later in the project
+void Stars::setYear(string newYear) {
+	year = newYear;
+}
+
+void Stars::setActor_award(string newActor_award) {
+	actor_award = newActor_award;
+}
+
+void Stars::setActor_winner(string newActor_winner) {
+	actor_winner = newActor_winner;
+}
+
+void Stars::setActor_name(string newActor_name) {
+	actor_name = newActor_name;
+}
+
+void Stars::setActor_film(string newActor_film) {
+	actor_film = newActor_film;
+}
