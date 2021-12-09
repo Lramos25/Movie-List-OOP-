@@ -1,0 +1,459 @@
+#include <iostream>
+#include <fstream>
+#include <ostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <stdio.h>
+
+#include "Film.h"
+#include "Stars.h"
+
+using namespace std;
+
+void fillStarsVector(vector<Stars>&);
+
+void fillFilmVector(vector<Film>&);
+
+void printStarsVector(const vector<Stars>&);
+
+void printFilmVector(const vector<Film>&);
+
+void saveStarsVector(const vector<Stars>&);
+
+void saveFilmVector(const vector<Film>&);
+
+void addStarsVector(vector<Stars>&);
+
+void addFilmVector(vector<Film>&);
+//void searchStarsVector(myStars);
+//void searchFilmVector(myFilm);
+
+void menu();
+
+int main() {
+
+    menu();
+    
+    return(0);
+}
+
+void menu() {
+
+
+    int fileChoice;
+    vector<Stars> myStars;
+    vector<Film> myFilm;
+
+    {
+    menustart:
+        int choice;
+        do {
+            system("cls");
+
+            cout << "\t\t\t-----------------------------" << endl;
+            cout << "\t\t\t     | MOVIE  SYSTEM |" << endl;
+            cout << "\t\t\t-----------------------------" << endl;
+            cout << "\t\t\t 1. Read Celebrity File" << endl;
+            cout << "\t\t\t 2. Read Film File\n" << endl;
+
+            cout << "\t\t\t 3. Display Celebrity Record" << endl;
+            cout << "\t\t\t 4. Display Film Record\n" << endl;
+
+            cout << "\t\t\t 5. Add Celebrity Record" << endl;
+            cout << "\t\t\t 6. Add Film Record\n" << endl;
+
+            cout << "\t\t\t 7. Search Celebrity Record" << endl;
+            cout << "\t\t\t 8. Search Film Record\n" << endl;
+
+            cout << "\t\t\t 9. Save Celebrity Record" << endl;
+            cout << "\t\t\t 10. Save Film Record\n" << endl;
+
+            cout << "\t\t\t 11. Delete Celebrity Record" << endl;
+            cout << "\t\t\t 12. Delete Film Record\n" << endl;
+
+            cout << "\t\t\t 13. Exit" << endl;
+
+            cout << "\t\t\t---------------------------" << endl;
+            cout << "\t\t\tChoose Option:[1/2/3/4/5/6/7/8/9/10/11/12/13]" << endl;
+            cout << "\t\t\t---------------------------" << endl;
+            cout << "Enter Your Choice: ";
+            cin >> choice;
+
+            switch (choice)
+            {
+            case 1:
+                fillStarsVector(myStars);
+                break;
+            case 2:
+                fillFilmVector(myFilm);
+                break;
+            case 3:
+                printStarsVector(myStars);
+                break;
+            case 4:
+                printFilmVector(myFilm);
+                break;
+            case 5:
+                addStarsVector(myStars);
+                break;
+            case 6:
+                addFilmVector(myFilm);
+                break;
+            case 7:
+                //searchStarsVector(myStars);
+                break;
+            case 8:
+                //searchFilmVector(myFilm);
+                break;
+            case 9:
+                saveStarsVector(myStars);
+                break;
+            case 10:
+                saveFilmVector(myFilm);
+                break;
+            case 11:
+                //deleteStarsVector(myStars);
+                break;
+            case 12:
+                //deleteFilmVector(myFilm);
+                break;
+            case 13:
+                exit(0);
+            default:
+                cout << "\n\t\t\t Invalid choice... Please Try Again..";
+            }
+        } while (1 == 1);
+    }
+}
+
+
+/*-----------------------------
+R1/R2 (COMPLETE need try catch blocks)
+read in actor-actress.csv/pictures.csv which is formatted as a comma separated csv file.
+    -No user input needed
+    -Blank values will just have a comma noting to go to the next field. (value, indicating a blank field.)
+    -Each line ends in a newline, not a comma.
+Place the items in a data structure.
+    -Using Vector
+    -Do we need to convert some variables to int (year or winner?)
+-----------------------------------------*/
+
+
+void fillStarsVector(vector<Stars>& myStars) {
+    
+    system("cls");
+
+   
+    string fileName;
+    string fileExtension = ".csv";
+    
+    cout << "What is the file you would you like to open? \n";
+    cin >> fileName;
+    string finalFileName = fileName + fileExtension;
+
+        ifstream myFile(finalFileName);
+
+        if (!myFile.is_open()) {
+            cout << "Failed to open file" << endl;
+            menu();
+        }
+
+        string year, award, winner, name, film;
+
+        string line;
+
+        while (getline(myFile, line)) {
+
+            stringstream ss(line);
+
+            getline(ss, year, ',');
+            getline(ss, award, ',');
+            getline(ss, winner, ',');
+            getline(ss, name, ',');
+            getline(ss, film, ',');
+
+        Stars newStars(year, award, winner, name, film);
+        myStars.push_back(newStars);
+        }
+    myFile.close(); 
+    system("pause");
+    }
+
+void fillFilmVector(vector<Film>& myFilm) {
+
+    system("cls");
+
+
+    string fileName;
+    string fileExtension = ".csv";
+
+    cout << "What is the file you would you like to open? \n";
+    cin >> fileName;
+    string finalFileName = fileName + fileExtension;
+
+        ifstream myFile(finalFileName);
+
+        if (!myFile.is_open()) {
+            cout << "Failed to open file" << endl;
+            menu();
+        }
+
+        string picture_name, picture_year, picture_nominations, picture_rating, picture_duration, picture_genre1, picture_genre2, picture_release, picture_metacritic, picture_synopsis;
+
+        string line;
+
+        while (getline(myFile, line)) {
+
+            stringstream ss(line);
+
+            getline(ss, picture_name, ',');
+            getline(ss, picture_year, ',');
+            getline(ss, picture_nominations, ',');
+            getline(ss, picture_rating, ',');
+            getline(ss, picture_duration, ',');
+            getline(ss, picture_genre1, ',');
+            getline(ss, picture_genre2, ',');
+            getline(ss, picture_release, ',');
+            getline(ss, picture_metacritic, ',');
+            getline(ss, picture_synopsis, ',');
+
+        Film newFilm(picture_name, picture_year, picture_nominations, picture_rating, picture_duration, picture_genre1, picture_genre2, picture_release, picture_metacritic, picture_synopsis);
+        myFilm.push_back(newFilm);
+        }
+    myFile.close(); 
+    system("pause");
+}
+
+
+/*-----------------------------
+R3/R4 (Add a new records)
+Add a new record for actors-actress
+    - ask for the required information (Year, Award, Winner, Name, Film), 
+    - create a new actors-actress object 
+    - add new object to the actors-actressvector
+Add a new record for pictures
+    - You will ask for the required information (name, year, nominations, rating, duration, genre1, genre2, release,metacritic, synopsis)
+    - create a new pictures object 
+    - add new object to the pictures vector
+-----------------------------------------*/
+
+void addStarsVector(vector<Stars>& myStars) {
+
+    string year, award, winner, name, film;
+    string answer = "";
+
+    cout << "would you like to enter a new record of the actor/actress (y/n):\n";
+    cin >> answer;
+    cin.ignore();
+
+    while (answer=="y" || answer=="Y") {
+
+        cout<< "Please enter the year:\n";
+        getline (cin, year);
+        cin.clear();
+
+        cout << "\nPlease enter the award:\n";
+        getline(cin, award);
+        cin.clear();
+
+        cout << "\nPlease enter the winner:\n";
+        getline(cin, winner);
+        cin.clear();
+        
+        cout << "\nPlease enter the name:\n";
+        getline(cin, name);
+        cin.clear();
+        
+        cout << "\nPlease enter the film:\n";
+        getline(cin, film);
+        cin.clear();
+        
+        Stars newStars(year, award, winner, name, film);
+        myStars.push_back(newStars);
+
+        cout << "\n\nwould you like to enter a new record of the actor/actress (y/n):\n";
+    cin >> answer;
+    }
+
+}
+
+void addFilmVector(vector<Film>& myFilm) {
+
+    string picture_name, picture_year, picture_nominations, picture_rating, picture_duration, picture_genre1, picture_genre2, picture_release, picture_metacritic, picture_synopsis;
+    string answer = "";
+
+    cout << "would you like to enter a new record of the film (y/n):\n";
+    cin >> answer;
+    cin.ignore();
+
+    while (answer == "y" || answer == "Y") {
+
+        cout << "Please enter the film's name:\n";
+        getline(cin, picture_name);
+        cin.clear();
+
+        cout << "\nPlease enter the film's year:\n";
+        getline(cin, picture_year);
+        cin.clear();
+
+        cout << "\nPlease enter the film's nomination(s):\n";
+        getline(cin, picture_nominations);
+        cin.clear();
+
+        cout << "\nPlease enter the rating:\n";
+        getline(cin, picture_rating);
+        cin.clear();
+
+        cout << "\nPlease enter the film's duration:\n";
+        getline(cin, picture_duration);
+        cin.clear();
+
+        cout << "\nPlease enter the film's first genre:\n";
+        getline(cin, picture_genre1);
+        cin.clear();
+
+        cout << "\nPlease enter the film's second genre:\n";
+        getline(cin, picture_genre2);
+        cin.clear();
+
+        cout << "\nPlease enter the film's release:\n";
+        getline(cin, picture_release);
+        cin.clear();
+
+        cout << "\nPlease enter the  film's metacritic:\n";
+        getline(cin, picture_metacritic);
+        cin.clear();
+
+        cout << "\nPlease enter the  film's synopsis:\n";
+        getline(cin, picture_synopsis);
+        cin.clear();
+
+        Film newFilm(picture_name, picture_year, picture_nominations, picture_rating, picture_duration, picture_genre1, picture_genre2, picture_release, picture_metacritic, picture_synopsis);
+        myFilm.push_back(newFilm);
+
+        cout << "\n\nwould you like to enter a new record of the actor/actress (y/n):\n";
+        cin >> answer;
+    }
+
+}
+
+
+/*-------------------------------------
+R11/R12 (COMPLETE need try catch blocks)
+Choose either the Stars or Film database, and display list of movies or actors on screen
+    -Display only the selected information
+    -Will display vector of objects - not file
+-------------------------------------------*/
+
+void printStarsVector(const vector<Stars>& myStars) {
+
+     int size = myStars.size();
+
+    for ( int i = 0; i < size; i++) {
+        cout << myStars[i].getActor_name() << endl;
+        cout << endl;
+    }
+    system("pause");
+   
+}
+
+
+void printFilmVector(const vector<Film>& myFilm) {
+
+    int size = myFilm.size();
+
+    for (int i = 0; i < size; i++) {
+        cout << myFilm[i].getPicture_name() << endl;
+        cout << endl;
+    }
+    system("pause");
+
+}
+
+
+/*-------------------------------------
+R9/R10 (Need try catch blocks + 1***issue***)
+Choose either the movie or actor database
+Save Vector of objects to csv file
+    -Save only the selected file
+    -First Line is headers (this will be the first vector)
+    -Following lines are data fields
+    -header and data is all separated by a comma ending in a new line - no comma at the end of line
+*** The save stars function does not return to menu function. All other functions - including save film - return without issue ***
+-------------------------------------------*/
+
+void saveStarsVector(const vector<Stars>& myStars)
+
+{
+    system("cls");
+    cout << "\n\n-------------------------------------------------------------------------------------------------------" << endl;
+    cout << "------------------------------------------ SAVE STARS FILE DATA ---------------------------------------------\n\n" << endl;
+
+    string newFileName;
+    string fileExtension = ".csv";
+
+    cout << "What would you like to name the file? \n";
+    cin >> newFileName;
+    string finalNewFileName = newFileName + fileExtension;
+
+
+    system("cls");
+
+    ofstream newFile(finalNewFileName);
+
+        int size = myStars.size();
+        for (int i = 0; i < myStars.size(); i++)
+        {
+            for (int i = 0; i < size; i++)
+
+                newFile << myStars[i].getYear() << "," << myStars[i].getActor_award() << "," << myStars[i].getActor_winner() << "," << 
+                myStars[i].getActor_name() << "," << myStars[i].getActor_film() << endl;
+
+            newFile << endl;
+        }
+
+    newFile.close();
+
+    cout << "Data Saved!\n\n";
+    //system("pause");
+    menu();
+}
+
+void saveFilmVector(const vector<Film>& myFilm)
+
+{
+    system("cls");
+    cout << "\n\n-------------------------------------------------------------------------------------------------------" << endl;
+    cout << "------------------------------------------ SAVE FILM FILE DATA ---------------------------------------------\n\n" << endl;
+
+    string newFileName;
+    string fileExtension = ".csv";
+
+    cout << "What would you like to name the file? \n";
+    cin >> newFileName;
+    string finalNewFileName = newFileName + fileExtension;
+
+
+    system("cls");
+
+    ofstream newFile(finalNewFileName);
+
+    int size = myFilm.size();
+    for (int i = 0; i < myFilm.size(); i++)
+    {
+        for (int i = 0; i < size; i++)
+
+            newFile << myFilm[i].getPicture_name() << "," << myFilm[i].getPicture_year() << "," << myFilm[i].getPicture_nominations() << "," << myFilm[i].getPicture_rating() << "," << 
+            myFilm[i].getPicture_duration() << myFilm[i].getPicture_genre1() << "," << myFilm[i].getPicture_genre2() << "," << myFilm[i].getPicture_release() << "," << 
+            myFilm[i].getPicture_metacritic() << "," << myFilm[i].getPicture_synopsis() << endl;
+
+        newFile << endl;
+    }
+
+    newFile.close();
+
+    cout << "Data Saved!\n\n";
+    //system("pause");
+    menu();
+}
