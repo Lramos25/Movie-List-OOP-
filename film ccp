@@ -1,0 +1,128 @@
+#include <iostream>
+#include <fstream>
+#include <ostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <stdio.h>
+
+#include "Film.h"
+
+
+using namespace std;
+
+
+Film::Film() {
+	 picture_name = "";
+	 picture_year = "";
+	 picture_nominations = "";
+	 picture_rating = "";
+	 picture_duration = "";
+	 picture_genre1 = "";
+	 picture_genre2 = "";
+	 picture_release = "";
+	 picture_metacritic = "";
+	 picture_synopsis = "";
+}
+
+
+Film::Film(string new_picture_name, string new_picture_year, string new_picture_nominations, string new_picture_rating, string new_picture_duration, string new_picture_genre1, string new_picture_genre2, string new_picture_release, string new_picture_metacritic, string new_picture_synopsis) {
+	
+	picture_name = new_picture_name;
+	picture_year = new_picture_year;
+	picture_nominations = new_picture_nominations;
+	picture_rating = new_picture_rating;
+	picture_duration = new_picture_duration;
+	picture_genre1 = new_picture_genre1;
+	picture_genre2 = new_picture_genre2;
+	picture_release = new_picture_release;
+	picture_metacritic = new_picture_metacritic;
+	picture_synopsis = new_picture_synopsis;
+}
+
+Film::~Film() {
+
+}
+
+string Film::getPicture_name() const {
+	return picture_name;
+}
+
+string Film::getPicture_year() const {
+	return picture_year;
+}
+
+string Film::getPicture_nominations() const {
+	return picture_nominations;
+}
+
+string Film::getPicture_rating() const {
+	return picture_rating;
+}
+
+string Film::getPicture_duration() const {
+	return picture_duration;
+}
+
+string Film::getPicture_genre1() const {
+	return picture_genre1;
+}
+
+string Film::getPicture_genre2() const {
+	return picture_genre2;
+}
+
+string Film::getPicture_release() const {
+	return picture_release;
+}
+
+string Film::getPicture_metacritic() const {
+	return picture_metacritic;
+}
+
+string Film::getPicture_synopsis() const {
+	return picture_synopsis;
+}
+
+
+//*** Set functions are for use later in the project
+
+void Film::setPicture_name(string new_picture_name) {
+	picture_name = new_picture_name;
+}
+
+void Film::setPicture_year(string new_picture_year) {
+	picture_year = new_picture_year;
+}
+
+void Film::setPicture_nominations(string new_picture_nominations) {
+	picture_nominations = new_picture_nominations;
+}
+
+void Film::setPicture_rating(string new_picture_rating) {
+	picture_rating = new_picture_rating;
+}
+
+void Film::setPicture_duration(string new_picture_duration) {
+	picture_duration = new_picture_duration;
+}
+
+void Film::setPicture_genre1(string new_picture_genre1) {
+	picture_genre1 = new_picture_genre1;
+}
+
+void Film::setPicture_genre2(string new_picture_genre2) {
+	picture_genre2 = new_picture_genre2;
+}
+
+void Film::setPicture_release(string new_picture_release) {
+	picture_release = new_picture_release;
+}
+
+void Film::setPicture_metacritic(string new_picture_metacritic) {
+	picture_metacritic = new_picture_metacritic;
+}
+
+void Film::setpicture_synopsis(string new_picture_synopsis) {
+	picture_synopsis = new_picture_synopsis;
+}
