@@ -1,0 +1,62 @@
+#pragma once
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include<stdlib.h>
+
+using namespace std;
+
+class Stars
+{
+
+private:
+
+	string year;
+	string actor_award;
+	string actor_winner;
+	string actor_name;
+	string actor_film;
+
+
+public:
+
+	//Default Constructor
+	Stars();
+
+	//Overload Constructor
+	Stars(string, string, string, string, string);
+
+	//Destrutor
+	~Stars();
+
+	string getYear() const;
+		//getYear
+		//@return string - year
+
+	string getActor_award() const;
+	//getYear
+	//@return string - award for award
+
+	string getActor_winner() const;
+	//getYear
+	//@return string - winner
+
+	string getActor_name() const;
+	//getYear
+	//@return string - name
+
+	string getActor_film() const;
+	//getYear
+	//@return string - film
+
+
+	//Mutators that should be needed for later in assignment
+	
+	void setYear(string);
+	void setActor_award(string);
+	void setActor_winner(string);
+	void setActor_name(string);
+	void setActor_film(string);
+};
